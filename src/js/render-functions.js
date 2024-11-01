@@ -19,24 +19,24 @@ const getGalleryItem = ({ webformatURL, largeImageURL, tags, likes, views, comme
 </li>`;
 };
 
+const lightbox = new SimpleLightbox('.gallery a', {
+  captions: true,
+  captionsData: 'alt',
+  captionDelay: 250,
+  animationSpeed: 300,
+  overlay: true,
+  overlayOpacity: 0.5,
+});
+
+lightbox.on('show.simplelightbox', function () {
+});
+
+lightbox.on('closed.simplelightbox', function () {
+});
+
 const renderGallery = (gallery, images) => {
   gallery.innerHTML = images.map(image => getGalleryItem(image)).join('');
-
-  const lightbox = new SimpleLightbox('.gallery a', {
-    captions: true,
-    captionsData: 'alt',
-    captionDelay: 250,
-    animationSpeed: 300,
-    overlay: true,
-    overlayOpacity: 0.5,
-  });
-
-  lightbox.on('show.simplelightbox', function () {
-  });
-
-  lightbox.on('closed.simplelightbox', function () {
-  });
-
+  lightbox.refresh();
 };
 
 export { renderGallery};
